@@ -1,13 +1,10 @@
-let first = Number(prompt("Введите первое значение"));
+let first = +prompt("Введите первое значение") || alert("Некорректный ввод!");
 let second;
 
-if (!first) {
-  alert("Некорректный ввод!");
-} else {
-  second = Number(prompt("Введите второе значение"));
-  if (!second) {
-    alert("Некорректный ввод!");
-  } else {
-    alert(`Ответ: ${first + second}, ${first / second}`);
-  }
+if (first) {
+  second = +prompt("Введите второе значение") || alert("Некорректный ввод!");
+}
+
+if (second) {
+  alert(`Ответ: ${first + second}, ${first / second}`);
 }

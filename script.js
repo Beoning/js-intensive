@@ -1,9 +1,8 @@
-let first = Number(prompt("Введите первое значение"));
-let second = Number(prompt("Введите второе значение"));
+let first = +prompt("Введите первое значение");
+let second = +prompt("Введите второе значение");
 
 if (!first || !second) {
   alert("Неверный ввод");
 } else {
-  let newNumber = first.toString(second);
-  alert(newNumber);
+  alert(first.toString(second));
 }
