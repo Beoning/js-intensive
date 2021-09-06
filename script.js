@@ -1,6 +1,6 @@
 function makeObjectDeepCopy(obj) {
   let objCopy = { ...obj };
-  for (key in obj) {
+  for (let key in obj) {
     if (typeof obj[key] === "object") {
       objCopy[key] = makeObjectDeepCopy(obj[key]);
     }
