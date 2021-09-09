@@ -1,9 +1,19 @@
-let first = Number(prompt("Введите первое значение"));
-let second = Number(prompt("Введите второе значение"));
+Array.prototype.myFilter = function (callback, thisArg) {
+  let result = [];
+  this.forEach((item, i, arr) => {
+    if (callback.call(thisArg, item, i, arr)) {
+      result = [...result, item];
+    }
+  });
 
-if (!first || !second) {
-  alert("Неверный ввод");
-} else {
-  let newNumber = first.toString(second);
-  alert(newNumber);
+  return result;
+};
+
+function createDebounceFunction(callback, delay) {
+  let timeout;
+
+  return function () {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => callback.apply(this, arguments), delay);
+  };
 }
