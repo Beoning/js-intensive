@@ -46,6 +46,7 @@ class Car {
   set yearOfManufacturing(year) {
     if (
       typeof year !== 'number' ||
+      isNaN(year) ||
       year < 1900 ||
       year > new Date().getFullYear()
     ) {
@@ -59,7 +60,12 @@ class Car {
   }
 
   set maxSpeed(speed) {
-    if (typeof speed !== 'number' || speed < 100 || speed > 300) {
+    if (
+      typeof speed !== 'number' ||
+      isNaN(year) ||
+      speed < 100 ||
+      speed > 300
+    ) {
       throw new Error('Некорректная скорость');
     }
     this.#maxSpeed = speed;
@@ -72,6 +78,7 @@ class Car {
   set maxFuelVolume(volumeNumber) {
     if (
       typeof volumeNumber !== 'number' ||
+      isNaN(volumeNumber) ||
       volumeNumber < 5 ||
       volumeNumber > 20
     ) {
@@ -85,7 +92,7 @@ class Car {
   }
 
   set fuelConsumption(num) {
-    if (typeof num !== 'number') {
+    if (typeof num !== 'number' || isNaN(num)) {
       throw new Error('Введите корректное число');
     }
     this.#fuelConsumption = num;
@@ -118,7 +125,12 @@ class Car {
   };
 
   fillUpGasTank = (fuelAmount) => {
-    if (typeof fuelAmount !== 'number' || fuelAmount <= 0) {
+    if (
+      typeof fuelAmount !== 'number' ||
+      isNaN(fuelAmount) ||
+      !isFinite(fuelAmount) ||
+      fuelAmount <= 0
+    ) {
       throw new Error('Неверное количество топлива для заправки');
     }
     if (this.#currentFuelVolume + fuelAmount > this.#maxFuelVolume) {
@@ -128,11 +140,16 @@ class Car {
   };
 
   drive = (speed, hours) => {
-    if (typeof speed !== 'number' || speed <= 0) {
+    if (typeof speed !== 'number' || isNaN(speed) || speed <= 0) {
       throw new Error('Неверная скорость');
     }
 
-    if (typeof hours !== 'number' || hours <= 0) {
+    if (
+      typeof hours !== 'number' ||
+      isNaN(hours) ||
+      !isFinite(hours) ||
+      hours <= 0
+    ) {
       throw new Error('Неверное количество часов');
     }
 
